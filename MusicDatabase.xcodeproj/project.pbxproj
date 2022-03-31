@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		E648FF4627E53DC500369118 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E648FF4527E53DC500369118 /* main.cpp */; };
+		E648FF4E27E53E1800369118 /* album.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E648FF4C27E53E1800369118 /* album.cpp */; };
+		E648FF5127E5418700369118 /* artist.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E648FF4F27E5418700369118 /* artist.cpp */; };
+		E648FF5427E541E700369118 /* song.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E648FF5227E541E700369118 /* song.cpp */; };
+		E648FF5727E60E1100369118 /* Mdatabase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E648FF5527E60E1100369118 /* Mdatabase.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +29,14 @@
 /* Begin PBXFileReference section */
 		E648FF4227E53DC500369118 /* MusicDatabase */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = MusicDatabase; sourceTree = BUILT_PRODUCTS_DIR; };
 		E648FF4527E53DC500369118 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		E648FF4C27E53E1800369118 /* album.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = album.cpp; sourceTree = "<group>"; };
+		E648FF4D27E53E1800369118 /* album.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = album.hpp; sourceTree = "<group>"; };
+		E648FF4F27E5418700369118 /* artist.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = artist.cpp; sourceTree = "<group>"; };
+		E648FF5027E5418700369118 /* artist.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = artist.hpp; sourceTree = "<group>"; };
+		E648FF5227E541E700369118 /* song.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = song.cpp; sourceTree = "<group>"; };
+		E648FF5327E541E700369118 /* song.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = song.hpp; sourceTree = "<group>"; };
+		E648FF5527E60E1100369118 /* Mdatabase.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Mdatabase.cpp; sourceTree = "<group>"; };
+		E648FF5627E60E1100369118 /* Mdatabase.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Mdatabase.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +70,14 @@
 			isa = PBXGroup;
 			children = (
 				E648FF4527E53DC500369118 /* main.cpp */,
+				E648FF4C27E53E1800369118 /* album.cpp */,
+				E648FF4D27E53E1800369118 /* album.hpp */,
+				E648FF4F27E5418700369118 /* artist.cpp */,
+				E648FF5027E5418700369118 /* artist.hpp */,
+				E648FF5227E541E700369118 /* song.cpp */,
+				E648FF5327E541E700369118 /* song.hpp */,
+				E648FF5527E60E1100369118 /* Mdatabase.cpp */,
+				E648FF5627E60E1100369118 /* Mdatabase.hpp */,
 			);
 			path = MusicDatabase;
 			sourceTree = "<group>";
@@ -119,7 +139,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E648FF5427E541E700369118 /* song.cpp in Sources */,
 				E648FF4627E53DC500369118 /* main.cpp in Sources */,
+				E648FF4E27E53E1800369118 /* album.cpp in Sources */,
+				E648FF5727E60E1100369118 /* Mdatabase.cpp in Sources */,
+				E648FF5127E5418700369118 /* artist.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
