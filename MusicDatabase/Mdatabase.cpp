@@ -84,7 +84,7 @@ void database::searchArtists() const{
     cout << endl;
     for(int i = 0; i < artists.size(); i++){
         string temp = *artists[i]->name;
-        if(strncasecmp(temp.c_str(), artistName.c_str(), 3) == 0){
+        if(strncasecmp(temp.c_str(), artistName.c_str(), 20) == 0){
             artists[i]->getArtist();
             cout << endl;
         }
@@ -98,7 +98,7 @@ void database::searchAlbums() const{
     cout << endl;
     for(int i = 0; i < artists.size(); i++){
         for(int j = 0; j < artists[i]->albums.size(); j++){
-            if(strncasecmp(artists[i]->albums[j]->albumName.c_str(), albumTemp.c_str(), 2) == 0){
+            if(strncasecmp(artists[i]->albums[j]->albumName.c_str(), albumTemp.c_str(), 20) == 0){
                 artists[i]->albums[j]->getAlbum();
                 cout << endl;
             }
@@ -114,7 +114,7 @@ void database::searchSongs() const{
     for(int i = 0; i < artists.size(); i++){
         for(int j = 0; j < artists[i]->albums.size(); j++){
             for(int k = 0; k < artists[i]->albums[j]->songs.size(); k++){
-                if(strncasecmp((*(artists[i]->albums[j]->songs[j]->pSongName)).c_str(), songTemp.c_str(), 2) == 0){
+                if(strncasecmp((*(artists[i]->albums[j]->songs[j]->pSongName)).c_str(), songTemp.c_str(), 20) == 0){
                     artists[i]->albums[j]->songs[k]->getSong();
                     cout << endl;
                 }
@@ -301,11 +301,43 @@ song* database::chooseSong(){
 }
 
 void database::exportFun(){
-    ofstream file;
-    file.open("exportedDB.txt");
+    int artistLineNum = 1;
+    int albumLineNum = 1;
+    int songLineNum = 1;
+    string fileName;
+    cout << "Please enter the text file name " << endl;
+    cin>>fileName;
+    cout << endl << endl;
+    ofstream file(fileName+".txt");
     if(file.is_open()){
-        file << getAllArtists();
-        
+        for(int i = 0; i < artists.size(); i++){
+            file << "->Artist Details: " << endl;
+            file << "A" << artistLineNum++ << " Artist Name: " << *artists[i]->name << endl;
+            file << "A" << artistLineNum++ << " Country: " << *artists[i]->pCountry<< endl;
+            file << "A" << artistLineNum++ << " Artist ID: " << *artists[i]->artistID<< endl;
+            file << endl;
+            artistLineNum = artistLineNum%3;
+            for(int j = 0; j < artists[i]->albums.size(); j++){
+                file << '\t' << "->Album Details: "<< endl;
+                file << "B" << albumLineNum++ << '\t' << "Album Name: " << artists[i]->albums[j]->albumName<< endl;
+                file << "B" << albumLineNum++ << '\t' << "Release Year: " << artists[i]->albums[j]->yRelease<< endl;
+                file <<"B" << albumLineNum++ << '\t' << "Genre: " << *artists[i]->albums[j]->genre<< endl;
+                file <<"B" << albumLineNum++ << '\t' << "Number of songs: " << artists[i]->albums[j]->nSongs<< endl;
+                file <<"B" << albumLineNum++ << '\t' << "Album ID: " << artists[i]->albums[j]->albumID<< endl;
+                file << endl;
+                albumLineNum = albumLineNum%5;
+                for(int k = 0; k < artists[i]->albums[j]->songs.size(); k++){
+                    file<<'\t' << '\t' << "->Song Details: " << endl;;
+                    file<< "C" << songLineNum++ << '\t' << '\t' <<"Song Name: " << *artists[i]->albums[j]->songs[k]->pSongName<< endl;
+                    file<<"C" << songLineNum++ <<'\t' << '\t' <<"Song Duration: " << artists[i]->albums[j]->songs[k]->mDuration << " minutes"<< endl;
+                    file<<"C" << songLineNum++ <<'\t' << '\t' <<"Track Number: " << *artists[i]->albums[j]->songs[k]->tNum<< endl;
+                    file<<"C" << songLineNum++ <<'\t' << '\t' <<"Version: " << artists[i]->albums[j]->songs[k]->editVersion<< endl;
+                    file<<"C" << songLineNum++ <<'\t' << '\t' <<"Song ID: " << *artists[i]->albums[j]->songs[k]->songID<< endl;
+                    file << endl;
+                    songLineNum = songLineNum%5;
+                }
+            }
+        }
         file.close();
     }
 }
@@ -314,11 +346,48 @@ void database::importFun(){
     string fileName, line;
     cout << "Please enter the text file name " << endl;
     cin>>fileName;
+    cout << endl;
     ifstream file(fileName+".txt");
     if(file.is_open()){
         while (getline(file,line)) {
             int length = line.length();
-            if(length == 12 && )
+            int ansLength;
+            string tempStr;
+            switch (line[0]) {
+                case 'A':
+                    artist* temp = new artist();
+                    artists.push_back(temp);
+                    switch (line[1]) {
+                        case 1:
+                            ansLength = 16;
+                            tempStr = line.substr(ansLength,length-ansLength);
+                            *temp->name = tempStr;
+                            break;
+                        case 2:
+                            ansLength = 12;
+                            tempStr = line.substr(ansLength,length-ansLength);
+                            *temp->pCountry = tempStr;
+                        case 3:
+                            ansLength = 14;
+                            tempStr = line.substr(ansLength,length-ansLength);
+                            *temp->artistID = stoi(tempStr);
+                        default:
+                            break;
+                    }
+                break;
+                case 'B':
+                    {
+                        
+                        }
+                    break;
+                case 'C':
+                {
+                    
+                }
+                    break;
+                default:
+                    break;
+            }
         }
         file.close();
     }

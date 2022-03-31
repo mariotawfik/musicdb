@@ -254,9 +254,11 @@ while(continueProg == true){
         }
             break;
         case 5:
+            a->exportFun();
             break;
 
         case 6:
+            a->importFun();
             break;
 
         case 7:
